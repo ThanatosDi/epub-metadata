@@ -4,7 +4,7 @@ import epub_metadata
 class TestEpubMetadata():
     def setup_class(self):
         self.epub = epub_metadata.epub(
-            'tests\Alices Adventures in Wonderland.epub')
+            './tests/Alices Adventures in Wonderland.epub')
 
     def test_title(self):
         title = self.epub.metadata.title
