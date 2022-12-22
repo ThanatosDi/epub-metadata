@@ -35,7 +35,7 @@ jobs:
         pytest
     - name: Publish test package
       if: github.event_name == 'push' && contains(github.ref_name, 'dev/')
-      users: pypa/gh-action-pypi-publish@release/v1
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
         repository_url: https://test.pypi.org/legacy/
