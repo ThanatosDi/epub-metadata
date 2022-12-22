@@ -20,6 +20,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'pip'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -31,7 +32,7 @@ jobs:
       run: |
         python -m pytest
   build:
-    name: Build and Upload to pypi
+    name: Build and Upload to PyPi
     if: github.event_name == 'pull_request' && github.base_ref == 'production'
     needs: run_test
     runs-on: ubuntu-latest
