@@ -32,7 +32,7 @@ jobs:
         python -m pytest
   build:
     name: Build and Upload to pypi
-    if: github.event_name == 'pull_request' && github.ref_name == 'production'
+    if: github.event_name == 'pull_request' && github.base_ref == 'production'
     needs: run_test
     runs-on: ubuntu-latest
     steps:
