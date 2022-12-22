@@ -16,6 +16,7 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 python-dateutil = ">=2.7.0"
+typing-extensions = {version = "*", markers = "python_version < \"3.8\""}
 
 [[package]]
 name = "attrs"
@@ -81,6 +82,7 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 colorama = {version = "*", markers = "os_name == \"nt\""}
+importlib-metadata = {version = ">=0.22", markers = "python_version < \"3.8\""}
 packaging = ">=19.0"
 pep517 = ">=0.9.1"
 tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
@@ -203,6 +205,7 @@ optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
+typing-extensions = {version = ">=3.6.4", markers = "python_version < \"3.8\""}
 zipp = ">=0.5"
 
 [package.extras]
@@ -340,7 +343,9 @@ optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
+importlib_metadata = {version = "*", markers = "python_version < \"3.8\""}
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
+zipp = {version = "*", markers = "python_version < \"3.8\""}
 
 [[package]]
 name = "pkginfo"
@@ -360,6 +365,9 @@ description = "plugin and hook calling mechanisms for python"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
+
+[package.dependencies]
+importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
 dev = ["pre-commit", "tox"]
@@ -404,6 +412,7 @@ python-versions = ">=3.7"
 attrs = ">=19.2.0"
 colorama = {version = "*", markers = "sys_platform == \"win32\""}
 exceptiongroup = {version = ">=1.0.0rc8", markers = "python_version < \"3.11\""}
+importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 iniconfig = "*"
 packaging = "*"
 pluggy = ">=0.12,<2.0"
@@ -712,7 +721,7 @@ urllib3 = ">=1.26.0"
 name = "typing-extensions"
 version = "4.4.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -751,8 +760,8 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.8"
-content-hash = "91e61a3670e2601623a82a31721d683ef34c5d1c73c7043f67f1414c93e3c839"
+python-versions = "^3.7"
+content-hash = "7c54b5213ed450fdf12d4a5b093075e0ef03121c4b9b5e0099af4995e93cdd90"
 
 [metadata.files]
 alabaster = [
