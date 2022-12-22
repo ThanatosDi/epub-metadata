@@ -33,6 +33,9 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest
+    - name: Build epub-metadata package
+      run: |
+        python -m build
     - name: Publish test package
       if: github.event_name == 'push' && contains(github.ref_name, 'dev/')
       uses: pypa/gh-action-pypi-publish@release/v1
