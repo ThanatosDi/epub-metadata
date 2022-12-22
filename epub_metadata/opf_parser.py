@@ -20,18 +20,38 @@ class OpfParser():
         return self.opf_doc.getElementsByTagName(f'dc:{dc_type}')
 
     def version(self) -> str:
+        """parser version from opf file
+
+        Returns:
+            str: version
+        """
         return self.opf_doc.getElementsByTagName('package')[0].attributes['version'].value
 
     def title(self) -> str:
+        """parser title from opf file
+
+        Returns:
+            str: title
+        """
         elements = self.__dc_filter('title')
         if any(elements) == False:
             return ''
         return elements[0].firstChild.data
 
     def creator(self) -> str:
+        """parser creator from opf file
+
+        Returns:
+            str: creator
+        """
         return self.opf_doc.getElementsByTagName('dc:creator')[0].firstChild.data
 
     def date(self) -> str:
+        """parser public date from opf file
+
+        Returns:
+            str: public date
+        """
         elements = self.__dc_filter('date')
         if any(elements) == False:
             return ''
@@ -39,24 +59,44 @@ class OpfParser():
         return data
 
     def description(self) -> str:
+        """parser description from opf file
+
+        Returns:
+            str: description
+        """
         elements = self.__dc_filter('description')
         if any(elements) == False:
             return ''
         return elements[0].firstChild.data
 
     def publisher(self) -> str:
+        """parser publisher from opf file
+
+        Returns:
+            str: publisher
+        """
         elements = self.__dc_filter('publisher')
         if any(elements) == False:
             return ''
         return elements[0].firstChild.data
 
     def identifier(self) -> str:
+        """parser identifier from opf file
+
+        Returns:
+            str: identifier
+        """
         elements = self.__dc_filter('identifier')
         if any(elements) == False:
             return ''
         return elements[0].firstChild.data
 
     def cover(self) -> tuple[str]:
+        """parser cover from opf file
+
+        Returns:
+            tuple[str]: cover base64 str and cover type
+        """
         meta_element = self.__tag_filter('meta', 'name', 'cover')
         if meta_element == None or 'content' not in meta_element.attributes.keys():
             return ('', '')
@@ -69,4 +109,4 @@ class OpfParser():
         cover_type = item_element.attributes['media-type'].value
         with open(cover_path, 'rb') as f:
             cover_data = base64.b64encode(f.read())
-            return (cover_data, cover_type)
+            return (cover_data.decode('utf-8'), cover_type)

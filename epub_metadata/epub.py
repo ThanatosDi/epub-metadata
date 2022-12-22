@@ -11,7 +11,7 @@ class epub(OpfParser):
     def __init__(self, epub_filepath: str):
         self.epub_filepath = epub_filepath
 
-    def unzip(self, tempdir: str) -> None:
+    def __unzip(self, tempdir: str) -> None:
         """unzip epub file to tempdir
 
         Args:
@@ -21,7 +21,7 @@ class epub(OpfParser):
         for names in zipfile.namelist():
             zipfile.extract(names, tempdir)
 
-    def opf_path(self, container_xml_path: str) -> str:
+    def __opf_path(self, container_xml_path: str) -> str:
         """get .opf path from container.xml
 
         Args:
@@ -44,11 +44,11 @@ class epub(OpfParser):
             Metadata: metadata object
         """
         with tempfile.TemporaryDirectory(prefix='epub_') as tempdir:
-            self.unzip(tempdir)
+            self.__unzip(tempdir)
             container_xml_path = os.path.join(
                 tempdir, 'META-INF', 'container.xml')
             opf_filepath = os.path.join(
-                tempdir, self.opf_path(container_xml_path))
+                tempdir, self.__opf_path(container_xml_path))
             opf_doc: minidom.Document = minidom.parse(opf_filepath)
             super().__init__(opf_doc, opf_filepath)
             cover_base64, cover_type = self.cover()
