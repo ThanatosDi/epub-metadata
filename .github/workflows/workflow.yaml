@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9"]
 
     steps:
     - uses: actions/checkout@v3
@@ -32,7 +32,7 @@ jobs:
         fi
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest
     - name: Publish test package
       if: github.event_name == 'push' && contains(github.ref_name, 'dev/')
       uses: pypa/gh-action-pypi-publish@release/v1
