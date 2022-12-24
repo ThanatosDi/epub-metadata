@@ -29,3 +29,7 @@ class TestEpubMetadata():
     def test_date(self):
         date = self.epub.metadata.date
         assert date == '1865-07-04'
+
+    def test_filename(self):
+        filename = self.epub.filename
+        assert filename == 'Alices Adventures in Wonderland'
