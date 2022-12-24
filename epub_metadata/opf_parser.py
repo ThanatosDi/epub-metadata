@@ -44,7 +44,10 @@ class OpfParser():
         Returns:
             str: creator
         """
-        return self.opf_doc.getElementsByTagName('dc:creator')[0].firstChild.data
+        element = self.__dc_filter('creator')
+        if any(element) == False:
+            return ''
+        return element[0].firstChild.data
 
     def date(self) -> str:
         """parser public date from opf file
