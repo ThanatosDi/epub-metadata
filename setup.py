@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="epub-metadata",
-    version="1.0.0b0",
+    version="1.0.1b0",
     author="ThanatosDi",
     author_email="ThanatosDi@kttsite.com",
     description="https://github.com/ThanatosDi/epub-metadata",
