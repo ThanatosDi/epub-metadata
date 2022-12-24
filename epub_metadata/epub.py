@@ -43,7 +43,7 @@ class epub(OpfParser):
         Returns:
             str: filename
         """
-        filename = os.path.basename(self.epub_filepath).split('.')[0]
+        filename = os.path.basename(self.epub_filepath).replace('.epub', '')
         return filename
 
     @property
