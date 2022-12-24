@@ -37,6 +37,16 @@ class epub(OpfParser):
         return opf_path
 
     @property
+    def filename(self) -> str:
+        """return filename not include extension name
+
+        Returns:
+            str: filename
+        """
+        filename = os.path.basename(self.epub_filepath).split('.')[0]
+        return filename
+
+    @property
     def metadata(self) -> Metadata:
         """get metadata
 
