@@ -1,5 +1,6 @@
 import base64
 import os
+from urllib.parse import unquote
 from xml.dom import minicompat, minidom
 
 import arrow
@@ -58,7 +59,11 @@ class OpfParser():
         elements = self.__dc_filter('date')
         if any(elements) == False:
             return ''
-        data = arrow.get(elements[0].firstChild.data).format('YYYY-MM-DD')
+        date: str = elements[0].firstChild.data
+        try:
+            data = arrow.get(date).format('YYYY-MM-DD')
+        except arrow.ParserError:
+            data = arrow.get(date.split(' ')[0]).format('YYYY-MM-DD')
         return data
 
     def description(self) -> str:
@@ -92,6 +97,8 @@ class OpfParser():
         elements = self.__dc_filter('identifier')
         if any(elements) == False:
             return ''
+        if elements[0].firstChild == None:
+            return ''
         return elements[0].firstChild.data
 
     def cover(self) -> tuple[str]:
@@ -108,7 +115,7 @@ class OpfParser():
         if item_element == None or 'href' not in item_element.attributes.keys():
             return ('', '')
         cover_path = os.path.join(os.path.dirname(
-            self.opf_path), item_element.attributes['href'].value)
+            self.opf_path), unquote(item_element.attributes['href'].value))
         cover_type = item_element.attributes['media-type'].value
         with open(cover_path, 'rb') as f:
             cover_data = base64.b64encode(f.read())
