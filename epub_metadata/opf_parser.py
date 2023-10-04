@@ -75,6 +75,8 @@ class OpfParser():
         elements = self.__dc_filter('description')
         if any(elements) == False:
             return ''
+        if elements[0].firstChild == None:
+            return ''
         return elements[0].firstChild.data
 
     def publisher(self) -> str:
