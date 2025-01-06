@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "epub-metadata"
-version = "1.0.6"
+version = "1.0.7"
 description = ""
 authors = ["ThanatosDi <yykkold55tw@gmail.com>"]
 readme = "README.md"
