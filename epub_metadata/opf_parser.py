@@ -59,7 +59,7 @@ class OpfParser():
         elements = self.__dc_filter('date')
         if any(elements) == False:
             return ''
-        date: str = elements[0].firstChild.data
+        date: str = elements[0].firstChild.data.strip()
         try:
             data = arrow.get(date).format('YYYY-MM-DD')
         except arrow.ParserError:
